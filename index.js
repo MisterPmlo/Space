@@ -116,11 +116,11 @@ client.on('message', async message => {
             let cmd = client.commands.get(command.slice(prefix.length));
             if (cmd) {
                 cmd.run(client, message, args, con, prefix)
-                console.log("[Commande] Le propriétaire du serveur a utilisé une commande valide");
+                console.log('[COMMAND]', `${command} ${args} used by ${message.author.tag} ID: ${message.author.id} Time: ${Date()} Guild: ${message.guild.name}`)
                 message.delete();
             }
         } else {
-            console.log("Cette commande n'existe pas")
+            console.log(`[${command}] Cette commande n'existe pas`)
         }
     })
 });
@@ -128,7 +128,7 @@ client.on('message', async message => {
 
 
 client.on('ready', async () => {
-    console.log(`Ready to serve in ${client.channels.size} channels on ${client.guilds.cache.size} servers, for a total of ${client.users.cache.size} users.`);
+    console.log(`Ready to serve in ${client.channels.cache.size} channels on ${client.guilds.cache.size} servers, for a total of ${client.users.cache.size} users.`);
     console.log("Hello, im ready");
     client.user.setActivity(`${client.guilds.cache.size} guilds 🌌`, { type: "WATCHING"})
 });
